@@ -55,6 +55,7 @@
       --line: #dededb;
       --soft: #f5f5f2;
       --width: 1180px;
+      --header-height: 190px;
     }
 
     * {
@@ -63,7 +64,7 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 28px;
+      scroll-padding-top: calc(var(--header-height) + 20px);
     }
 
     body {
@@ -116,10 +117,10 @@
     }
 
     .skip-link {
-      position: absolute;
+      position: fixed;
       top: -100px;
       left: 20px;
-      z-index: 100;
+      z-index: 1001;
       padding: 12px 20px;
       background: var(--black);
       color: var(--white);
@@ -136,7 +137,18 @@
       line-height: 1;
     }
 
-    /* Masthead */
+    /* Full-width sticky header */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      background: var(--white);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, .08);
+    }
+
+    /* Logo row */
 
     .masthead {
       display: flex;
@@ -177,7 +189,15 @@
       white-space: nowrap;
     }
 
-    /* Black navigation bar */
+    /* Edge-to-edge black navigation background */
+
+    .navigation-shell {
+      width: 100%;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* Navigation content aligns with the main page */
 
     .navigation-bar {
       display: flex;
@@ -186,9 +206,7 @@
       flex-wrap: wrap;
       gap: 12px 24px;
       min-height: 72px;
-      padding: 12px 24px;
-      background: var(--black);
-      color: var(--white);
+      padding: 12px 0;
     }
 
     .brand {
@@ -343,7 +361,7 @@
       color: var(--black);
     }
 
-    /* Smaller photo and academic details */
+    /* Photo and academic details */
 
     .hero-profile {
       width: 100%;
@@ -808,7 +826,7 @@
         align-items: flex-start;
         flex-direction: column;
         gap: 3px;
-        padding: 12px 16px;
+        padding: 12px 0;
       }
 
       .navigation {
@@ -948,7 +966,7 @@
       }
     }
 
-    /* Accessibility */
+    /* Reduced motion */
 
     @media (prefers-reduced-motion: reduce) {
       html {
@@ -969,8 +987,22 @@
     /* Print */
 
     @media print {
+      html {
+        scroll-padding-top: 0;
+      }
+
       .container {
         width: 100%;
+      }
+
+      .site-header {
+        position: static;
+        box-shadow: none;
+      }
+
+      .navigation-shell {
+        background: transparent;
+        color: var(--black);
       }
 
       .navigation,
@@ -1030,35 +1062,38 @@
   </style>
 </head>
 
-<body>
+<body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="container">
+  <!-- Header sits outside the limited-width page container -->
+  <header class="site-header" id="site-header">
 
-    <header id="top">
-      <div class="masthead">
-        <a
-          class="school-logo"
-          href="https://www.newschool.edu/"
-          aria-label="Visit The New School"
+    <!-- White logo row -->
+    <div class="container masthead">
+      <a
+        class="school-logo"
+        href="https://www.newschool.edu/"
+        aria-label="Visit The New School"
+      >
+        <img
+          src="new-school-logo.png"
+          alt="The New School"
+          width="2560"
+          height="1683"
         >
-          <img
-            src="new-school-logo.png"
-            alt="The New School"
-            width="2560"
-            height="1683"
-          >
-        </a>
+      </a>
 
-        <p class="masthead-note">
-          <strong>Han Wang</strong>
-          <span class="masthead-school">
-            The New School for Social Research
-          </span>
-        </p>
-      </div>
+      <p class="masthead-note">
+        <strong>Han Wang</strong>
+        <span class="masthead-school">
+          The New School for Social Research
+        </span>
+      </p>
+    </div>
 
-      <div class="navigation-bar">
+    <!-- Black background spans the entire screen -->
+    <div class="navigation-shell">
+      <div class="container navigation-bar">
         <a
           class="brand"
           href="#top"
@@ -1083,12 +1118,14 @@
           <a href="#profiles">Find me online</a>
         </nav>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main id="main">
+  <!-- Main page content -->
+  <div class="container">
+    <main id="main" tabindex="-1">
 
       <!-- Introduction -->
-
       <section class="hero" aria-labelledby="name">
         <div class="hero-copy">
           <p class="eyebrow">
@@ -1173,7 +1210,6 @@
       </section>
 
       <!-- Research -->
-
       <section
         class="section"
         id="research"
@@ -1208,7 +1244,6 @@
       </section>
 
       <!-- Publications -->
-
       <section
         class="section"
         id="publications"
@@ -1232,7 +1267,6 @@
         </div>
 
         <div class="publication-list">
-
           <article class="publication">
             <div class="publication-meta">
               <time class="publication-year" datetime="2026">
@@ -1257,9 +1291,7 @@
                 <strong>Han Wang</strong>
               </p>
 
-              <p class="venue">
-                SSRN working paper
-              </p>
+              <p class="venue">SSRN working paper</p>
 
               <details>
                 <summary>Research overview</summary>
@@ -1338,12 +1370,10 @@
               </div>
             </div>
           </article>
-
         </div>
       </section>
 
       <!-- Online profiles -->
-
       <section
         class="online-section"
         id="profiles"
@@ -1412,7 +1442,33 @@
         <span class="arrow" aria-hidden="true">↑</span>
       </a>
     </footer>
-
   </div>
+
+  <script>
+    // Keep section headings clear of the sticky header.
+    (() => {
+      const header = document.getElementById("site-header");
+
+      const updateHeaderHeight = () => {
+        const height = Math.ceil(
+          header.getBoundingClientRect().height
+        );
+
+        document.documentElement.style.setProperty(
+          "--header-height",
+          `${height}px`
+        );
+      };
+
+      updateHeaderHeight();
+
+      window.addEventListener("load", updateHeaderHeight);
+      window.addEventListener("resize", updateHeaderHeight);
+
+      if ("ResizeObserver" in window) {
+        new ResizeObserver(updateHeaderHeight).observe(header);
+      }
+    })();
+  </script>
 </body>
 </html>
