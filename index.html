@@ -114,14 +114,14 @@
       padding: 8px 16px;
       z-index: 10;
       background: var(--ink);
-      color: white;
+      color: var(--paper);
     }
 
     .skip:focus {
       top: 12px;
     }
 
-    /* Header: logo first, name and navigation second */
+    /* Header: logo above the black navigation bar */
 
     .site-header {
       padding-top: 22px;
@@ -147,24 +147,24 @@
       flex-wrap: wrap;
       gap: 16px 28px;
       margin-top: 20px;
-      padding: 16px 0;
-      border-top: 1px solid var(--line);
+      padding: 16px 20px;
+      background: #000000;
     }
 
     .header-name {
-      color: var(--ink);
+      color: #ffffff;
       font-size: 1.1rem;
       font-weight: 650;
       text-decoration: none;
       flex-shrink: 0;
     }
 
-    .header-name span {
-      color: var(--accent);
+    .header-name:hover {
+      color: #ffffff;
     }
 
-    .header-name:hover {
-      color: var(--link);
+    .header-name span {
+      color: #e82e21;
     }
 
     .nav {
@@ -175,12 +175,12 @@
 
     .nav a {
       font-size: .9rem;
-      color: var(--muted);
+      color: #ffffff;
       text-decoration: none;
     }
 
     .nav a:hover {
-      color: var(--link);
+      color: #ffffff;
       text-decoration: underline;
     }
 
@@ -277,12 +277,6 @@
 
     .affiliation strong {
       font-weight: 650;
-    }
-
-    .location {
-      color: var(--muted);
-      font-size: .9rem;
-      margin-bottom: 22px;
     }
 
     .contact-email {
@@ -427,40 +421,7 @@
       font-size: .9rem;
     }
 
-    /* Research code */
-
-    .code-panel {
-      background: var(--tint);
-      padding: 30px;
-      border-left: 3px solid var(--accent);
-    }
-
-    .code-panel h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      line-height: 1.4;
-      margin-bottom: 13px;
-    }
-
-    .code-panel p {
-      font-size: .96rem;
-      color: var(--muted);
-      margin-bottom: 20px;
-    }
-
-    .code-meta {
-      display: block;
-      font-size: .8rem;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    .code-panel a {
-      font-size: .9rem;
-      font-weight: 600;
-    }
-
-    /* External profiles */
+    /* Online profiles */
 
     .profiles {
       display: grid;
@@ -564,8 +525,7 @@
         padding-left: 20px;
       }
 
-      .affiliation,
-      .location {
+      .affiliation {
         margin-bottom: 12px;
       }
 
@@ -588,10 +548,6 @@
         font-size: 1.35rem;
       }
 
-      .code-panel {
-        padding: 23px;
-      }
-
       .profiles {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -609,6 +565,8 @@
       }
     }
 
+    /* Print */
+
     @media print {
       .nav,
       .hero-links,
@@ -619,6 +577,15 @@
 
       .wrap {
         width: 100%;
+      }
+
+      .header-row {
+        background: transparent;
+      }
+
+      .header-name,
+      .header-name:hover {
+        color: var(--ink);
       }
 
       .hero {
@@ -636,8 +603,7 @@
         grid-template-columns: 150px 1fr;
       }
 
-      .paper,
-      .code-panel {
+      .paper {
         break-inside: avoid;
       }
 
@@ -653,6 +619,7 @@
 
   <div class="wrap">
     <header class="site-header" id="top">
+
       <!-- First line: The New School logo -->
       <a class="wordmark" href="https://www.newschool.edu/">
         <img
@@ -663,7 +630,7 @@
         >
       </a>
 
-      <!-- Second line: name followed by navigation -->
+      <!-- Second line: black name and navigation bar -->
       <div class="header-row">
         <a
           class="header-name"
@@ -674,10 +641,7 @@
         </a>
 
         <nav class="nav" aria-label="Main navigation">
-          <a href="#research">Research</a>
           <a href="#publications">Publications</a>
-          <a href="#code">Code</a>
-          <a href="#profiles">Profiles</a>
 
           <a
             href="https://drive.google.com/file/d/1RAUoQX-d5A3fzTe7907nYvF56fMKVozH/view?usp=sharing"
@@ -687,11 +651,14 @@
           >
             CV
           </a>
+
+          <a href="#profiles">Find me online</a>
         </nav>
       </div>
     </header>
 
     <main id="main">
+
       <!-- Introduction -->
       <section class="hero" aria-labelledby="name">
         <div>
@@ -703,8 +670,7 @@
 
           <p class="intro">
             I conduct research at the
-            <a href="https://www.newschool.edu/nssr/">
-              New School for Social Research (NSSR)</a>.
+            <a href="https://www.newschool.edu/nssr/">New School for Social Research (NSSR)</a>.
             My work explores the transdisciplinary connections between
             economics and anthropology, with a particular interest in
             heterodox approaches to social research.
@@ -742,11 +708,9 @@
           <p class="profile-label">Affiliation</p>
 
           <p class="affiliation">
-            <strong>
-              Department of Anthropology</strong><br>
-              New School for Social Research
-            </a><br><a href="https://www.newschool.edu/">
-            The New School
+            <strong>Department of Anthropology</strong><br>
+            New School for Social Research<br>
+            <a href="https://www.newschool.edu/">The New School</a>
           </p>
 
           <p class="contact-email">
@@ -899,48 +863,14 @@
         </div>
       </section>
 
-      <!-- Research code -->
-      <section
-        class="section"
-        id="code"
-        aria-labelledby="code-heading"
-      >
-        <h2 class="section-label" id="code-heading">
-          <span class="section-number">03</span>
-          Research code
-        </h2>
-
-        <div class="code-panel">
-          <span class="code-meta">
-            Python · Replication package
-          </span>
-
-          <h3>
-            Agricultural subsistence &amp; commercialization
-          </h3>
-
-          <p>
-            Code accompanying
-            <em>Structural Transformation Beyond Productivity</em>,
-            covering data preparation, model calibration, regression
-            analysis, and maps, alongside a county-level historical
-            soybean analysis.
-          </p>
-
-          <a href="https://github.com/hanwang-research/crop-subsistence-snap-replication">
-            GitHub repository
-          </a>
-        </div>
-      </section>
-
-      <!-- Online profiles -->
+      <!-- Find me online -->
       <section
         class="section"
         id="profiles"
         aria-labelledby="profiles-heading"
       >
         <h2 class="section-label" id="profiles-heading">
-          <span class="section-number">04</span>
+          <span class="section-number">03</span>
           Find me online
         </h2>
 
