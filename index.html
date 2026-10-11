@@ -154,8 +154,8 @@
     }
 
     /*
-      This space always matches the expanded header.
-      It prevents the page from jumping when the logo row shrinks.
+      Keep the expanded header's space reserved so the page
+      does not jump when the logo row becomes smaller.
     */
 
     .header-spacer {
@@ -179,10 +179,16 @@
       flex-shrink: 0;
     }
 
+    /*
+      Individual offsets compensate for the different
+      spacing inside the two logo images.
+    */
+
     .school-logo .logo-stacked {
       display: block;
       width: 95px;
       height: auto;
+      transform: translateX(-3px);
     }
 
     .school-logo .logo-flat {
@@ -191,6 +197,7 @@
       height: 28px;
       object-fit: contain;
       object-position: left center;
+      transform: translateX(-7px);
     }
 
     .masthead-note {
@@ -303,6 +310,12 @@
 
     .hero > * {
       min-width: 0;
+    }
+
+    /* Raise only the introductory text on desktop. */
+
+    .hero-copy {
+      transform: translateY(-12px);
     }
 
     .eyebrow {
@@ -861,6 +874,7 @@
 
       .school-logo .logo-stacked {
         width: 78px;
+        transform: translateX(-2px);
       }
 
       .school-logo .logo-flat {
@@ -894,6 +908,10 @@
         grid-template-columns: 1fr;
         gap: 34px;
         padding: 46px 0 50px;
+      }
+
+      .hero-copy {
+        transform: none;
       }
 
       .hero h1 {
@@ -1090,6 +1108,10 @@
       .hero {
         padding: 30px 0;
         gap: 30px;
+      }
+
+      .hero-copy {
+        transform: none;
       }
 
       .hero h1 {
