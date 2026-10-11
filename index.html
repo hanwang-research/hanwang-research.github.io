@@ -11,6 +11,7 @@
   <meta name="robots" content="max-image-preview:large">
 
   <link rel="canonical" href="https://hanwang-research.github.io/">
+  <link rel="preload" as="image" href="the-new-school-logo-flat.png">
 
   <meta property="og:title" content="Han Wang | The New School">
   <meta property="og:description" content="Research at NSSR on transdisciplinary connections between economics and anthropology, with a particular interest in heterodox approaches to social research.">
@@ -55,7 +56,10 @@
       --line: #dededb;
       --soft: #f5f5f2;
       --width: 1180px;
-      --header-height: 190px;
+
+      --masthead-height: 112px;
+      --navigation-height: 72px;
+      --header-height: 184px;
     }
 
     * {
@@ -137,25 +141,37 @@
       line-height: 1;
     }
 
-    /* Full-width sticky header */
+    /* Fixed full-width header */
 
     .site-header {
-      position: sticky;
+      position: fixed;
       top: 0;
+      right: 0;
+      left: 0;
       z-index: 1000;
-      width: 100%;
       background: var(--white);
       box-shadow: 0 1px 0 rgba(0, 0, 0, .08);
     }
 
-    /* Logo row */
+    /*
+      This space always matches the expanded header.
+      It prevents the page from jumping when the logo row shrinks.
+    */
+
+    .header-spacer {
+      height: calc(
+        var(--masthead-height) + var(--navigation-height)
+      );
+    }
+
+    /* Expanded logo row */
 
     .masthead {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 25px 0;
+      height: var(--masthead-height);
     }
 
     .school-logo {
@@ -163,9 +179,18 @@
       flex-shrink: 0;
     }
 
-    .school-logo img {
+    .school-logo .logo-stacked {
+      display: block;
       width: 95px;
       height: auto;
+    }
+
+    .school-logo .logo-flat {
+      display: none;
+      width: 230px;
+      height: 28px;
+      object-fit: contain;
+      object-position: left center;
     }
 
     .masthead-note {
@@ -189,15 +214,31 @@
       white-space: nowrap;
     }
 
-    /* Edge-to-edge black navigation background */
+    /* Compact logo row while scrolling */
+
+    .site-header.is-compact .masthead {
+      height: 44px;
+    }
+
+    .site-header.is-compact .logo-stacked {
+      display: none;
+    }
+
+    .site-header.is-compact .logo-flat {
+      display: block;
+    }
+
+    .site-header.is-compact .masthead-note {
+      display: none;
+    }
+
+    /* Edge-to-edge black navigation */
 
     .navigation-shell {
       width: 100%;
       background: var(--black);
       color: var(--white);
     }
-
-    /* Navigation content aligns with the main page */
 
     .navigation-bar {
       display: flex;
@@ -804,17 +845,27 @@
     /* Mobile */
 
     @media (max-width: 740px) {
+      :root {
+        --masthead-height: 92px;
+        --navigation-height: 115px;
+        --header-height: 207px;
+      }
+
       .container {
         width: calc(100% - 36px);
       }
 
       .masthead {
-        padding: 20px 0;
         gap: 12px;
       }
 
-      .school-logo img {
+      .school-logo .logo-stacked {
         width: 78px;
+      }
+
+      .school-logo .logo-flat {
+        width: 210px;
+        height: 26px;
       }
 
       .masthead-note {
@@ -1000,6 +1051,26 @@
         box-shadow: none;
       }
 
+      .header-spacer {
+        display: none;
+      }
+
+      .site-header.is-compact .masthead {
+        height: var(--masthead-height);
+      }
+
+      .site-header.is-compact .logo-stacked {
+        display: block;
+      }
+
+      .site-header.is-compact .logo-flat {
+        display: none;
+      }
+
+      .site-header.is-compact .masthead-note {
+        display: block;
+      }
+
       .navigation-shell {
         background: transparent;
         color: var(--black);
@@ -1010,11 +1081,6 @@
       .skip-link,
       .footer a {
         display: none;
-      }
-
-      .navigation-bar {
-        background: transparent;
-        padding-inline: 0;
       }
 
       .brand {
@@ -1065,10 +1131,7 @@
 <body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Header sits outside the limited-width page container -->
   <header class="site-header" id="site-header">
-
-    <!-- White logo row -->
     <div class="container masthead">
       <a
         class="school-logo"
@@ -1076,10 +1139,17 @@
         aria-label="Visit The New School"
       >
         <img
+          class="logo-stacked"
           src="new-school-logo.png"
           alt="The New School"
           width="2560"
           height="1683"
+        >
+
+        <img
+          class="logo-flat"
+          src="the-new-school-logo-flat.png"
+          alt="The New School"
         >
       </a>
 
@@ -1091,7 +1161,6 @@
       </p>
     </div>
 
-    <!-- Black background spans the entire screen -->
     <div class="navigation-shell">
       <div class="container navigation-bar">
         <a
@@ -1121,11 +1190,13 @@
     </div>
   </header>
 
-  <!-- Main page content -->
+  <div class="header-spacer" aria-hidden="true"></div>
+
   <div class="container">
     <main id="main" tabindex="-1">
 
       <!-- Introduction -->
+
       <section class="hero" aria-labelledby="name">
         <div class="hero-copy">
           <p class="eyebrow">
@@ -1210,6 +1281,7 @@
       </section>
 
       <!-- Research -->
+
       <section
         class="section"
         id="research"
@@ -1244,6 +1316,7 @@
       </section>
 
       <!-- Publications -->
+
       <section
         class="section"
         id="publications"
@@ -1267,6 +1340,9 @@
         </div>
 
         <div class="publication-list">
+
+          <!-- First paper -->
+
           <article class="publication">
             <div class="publication-meta">
               <time class="publication-year" datetime="2026">
@@ -1314,9 +1390,19 @@
                   Replication code
                   <span class="arrow" aria-hidden="true">↗</span>
                 </a>
+
+                <a
+                  href="st_ag_pre.pdf"
+                  download="Han-Wang-Structural-Transformation-Slides.pdf"
+                >
+                  Download slides
+                  <span class="arrow" aria-hidden="true">↓</span>
+                </a>
               </div>
             </div>
           </article>
+
+          <!-- Second paper -->
 
           <article class="publication">
             <div class="publication-meta">
@@ -1370,10 +1456,12 @@
               </div>
             </div>
           </article>
+
         </div>
       </section>
 
       <!-- Online profiles -->
+
       <section
         class="online-section"
         id="profiles"
@@ -1445,28 +1533,69 @@
   </div>
 
   <script>
-    // Keep section headings clear of the sticky header.
     (() => {
+      const root = document.documentElement;
       const header = document.getElementById("site-header");
+      const navigation = header.querySelector(".navigation-shell");
 
-      const updateHeaderHeight = () => {
-        const height = Math.ceil(
+      let updateScheduled = false;
+
+      function updateHeader() {
+        header.classList.toggle(
+          "is-compact",
+          window.scrollY > 64
+        );
+
+        const navigationHeight = Math.ceil(
+          navigation.getBoundingClientRect().height
+        );
+
+        const headerHeight = Math.ceil(
           header.getBoundingClientRect().height
         );
 
-        document.documentElement.style.setProperty(
-          "--header-height",
-          `${height}px`
+        /*
+          The spacer uses the expanded masthead height plus the
+          navigation height. It does not shrink with the header.
+        */
+        root.style.setProperty(
+          "--navigation-height",
+          `${navigationHeight}px`
         );
-      };
 
-      updateHeaderHeight();
+        /*
+          Section links use the actual visible header height,
+          keeping their headings below the fixed header.
+        */
+        root.style.setProperty(
+          "--header-height",
+          `${headerHeight}px`
+        );
 
-      window.addEventListener("load", updateHeaderHeight);
-      window.addEventListener("resize", updateHeaderHeight);
+        updateScheduled = false;
+      }
+
+      function scheduleUpdate() {
+        if (updateScheduled) return;
+
+        updateScheduled = true;
+        window.requestAnimationFrame(updateHeader);
+      }
+
+      updateHeader();
+
+      window.addEventListener("scroll", scheduleUpdate, {
+        passive: true
+      });
+
+      window.addEventListener("resize", scheduleUpdate);
+      window.addEventListener("load", scheduleUpdate);
+      window.addEventListener("pageshow", scheduleUpdate);
 
       if ("ResizeObserver" in window) {
-        new ResizeObserver(updateHeaderHeight).observe(header);
+        const observer = new ResizeObserver(scheduleUpdate);
+        observer.observe(header);
+        observer.observe(navigation);
       }
     })();
   </script>
