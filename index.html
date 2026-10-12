@@ -15,7 +15,7 @@
   <meta name="robots" content="max-image-preview:large">
 
   <link rel="canonical" href="https://hanwang-research.github.io/">
-  <link rel="icon" type="image/png" href="Big_N.png">
+  <link rel="icon" type="image/png" sizes="140x140" href="https://hanwang-research.github.io/Big_N.png">
   <link rel="preload" as="image" href="the-new-school-logo-flat.png">
 
   <meta
@@ -37,11 +37,11 @@
     content="https://hanwang-research.github.io/photo.jpg"
   >
   <meta property="og:image:type" content="image/jpeg">
-  <meta property="og:image:width" content="1139">
-  <meta property="og:image:height" content="640">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="1364">
   <meta
     property="og:image:alt"
-    content="Han Wang seated on a rock overlooking a canyon"
+    content="Portrait of Han Wang"
   >
 
   <!-- Preferred site name for Google -->
@@ -61,7 +61,14 @@
     "@type": "ProfilePage",
     "url": "https://hanwang-research.github.io/",
     "name": "Han Wang | The New School for Social Research",
-    "primaryImageOfPage": "https://hanwang-research.github.io/photo.jpg",
+    "primaryImageOfPage": {
+      "@type": "ImageObject",
+      "contentUrl": "https://hanwang-research.github.io/photo.jpg",
+      "url": "https://hanwang-research.github.io/photo.jpg",
+      "width": 1280,
+      "height": 1364,
+      "caption": "Portrait of Han Wang"
+    },
     "mainEntity": {
       "@type": "Person",
       "name": "Han Wang",
@@ -106,7 +113,7 @@
       margin: 0;
       background: var(--white);
       color: var(--black);
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "Helvetica Neue", Arial, sans-serif;
       font-size: 16px;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
@@ -1283,9 +1290,9 @@
             <img
               class="portrait"
               src="photo.jpg"
-              alt="Han Wang seated on a rock overlooking a canyon"
-              width="1139"
-              height="640"
+              alt="Portrait of Han Wang"
+              width="1280"
+              height="1364"
               fetchpriority="high"
             >
           </figure>
