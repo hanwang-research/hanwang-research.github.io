@@ -4,31 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Han Wang | The New School</title>
+  <title>Han Wang | The New School for Social Research</title>
 
-  <meta name="description" content="Han Wang conducts research at the New School for Social Research (NSSR), exploring transdisciplinary connections between economics and anthropology and heterodox approaches to social research.">
+  <meta
+    name="description"
+    content="Han Wang conducts research at The New School for Social Research (NSSR), exploring transdisciplinary connections between economics and anthropology and heterodox approaches to social research."
+  >
+
   <meta name="theme-color" content="#111111">
   <meta name="robots" content="max-image-preview:large">
 
   <link rel="canonical" href="https://hanwang-research.github.io/">
+  <link rel="icon" type="image/png" href="Big_N.png">
   <link rel="preload" as="image" href="the-new-school-logo-flat.png">
 
-  <meta property="og:title" content="Han Wang | The New School">
-  <meta property="og:description" content="Research at NSSR on transdisciplinary connections between economics and anthropology, with a particular interest in heterodox approaches to social research.">
+  <meta
+    property="og:site_name"
+    content="The New School for Social Research"
+  >
+  <meta
+    property="og:title"
+    content="Han Wang | The New School for Social Research"
+  >
+  <meta
+    property="og:description"
+    content="Research at NSSR on transdisciplinary connections between economics and anthropology, with a particular interest in heterodox approaches to social research."
+  >
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hanwang-research.github.io/">
-  <meta property="og:image" content="https://hanwang-research.github.io/photo.jpg">
+  <meta
+    property="og:image"
+    content="https://hanwang-research.github.io/photo.jpg"
+  >
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1139">
   <meta property="og:image:height" content="640">
-  <meta property="og:image:alt" content="Han Wang seated on a rock overlooking a canyon">
+  <meta
+    property="og:image:alt"
+    content="Han Wang seated on a rock overlooking a canyon"
+  >
 
+  <!-- Preferred site name for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "The New School for Social Research",
+    "url": "https://hanwang-research.github.io/"
+  }
+  </script>
+
+  <!-- Personal academic profile -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     "url": "https://hanwang-research.github.io/",
-    "name": "Han Wang | The New School",
+    "name": "Han Wang | The New School for Social Research",
     "primaryImageOfPage": "https://hanwang-research.github.io/photo.jpg",
     "mainEntity": {
       "@type": "Person",
@@ -45,8 +77,7 @@
   </script>
 
   <style>
-    /* Base */
-
+    /* Colors and layout */
     :root {
       --black: #111111;
       --white: #ffffff;
@@ -75,7 +106,7 @@
       margin: 0;
       background: var(--white);
       color: var(--black);
-      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       font-size: 16px;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
@@ -107,11 +138,17 @@
       outline-offset: 5px;
     }
 
-    h1, h2, h3, p, figure {
+    h1,
+    h2,
+    h3,
+    p,
+    figure {
       margin: 0;
     }
 
-    h1, h2, h3 {
+    h1,
+    h2,
+    h3 {
       line-height: 1.15;
     }
 
@@ -141,8 +178,7 @@
       line-height: 1;
     }
 
-    /* Fixed full-width header */
-
+    /* Fixed header */
     .site-header {
       position: fixed;
       top: 0;
@@ -154,18 +190,16 @@
     }
 
     /*
-      Keep the expanded header's space reserved so the page
+      Reserve the expanded header's space so the content
       does not jump when the logo row becomes smaller.
     */
-
     .header-spacer {
       height: calc(
         var(--masthead-height) + var(--navigation-height)
       );
     }
 
-    /* Expanded logo row */
-
+    /* Logo row */
     .masthead {
       display: flex;
       align-items: center;
@@ -178,11 +212,6 @@
       display: inline-block;
       flex-shrink: 0;
     }
-
-    /*
-      Individual offsets compensate for the different
-      spacing inside the two logo images.
-    */
 
     .school-logo .logo-stacked {
       display: block;
@@ -221,8 +250,7 @@
       white-space: nowrap;
     }
 
-    /* Compact logo row while scrolling */
-
+    /* Compact logo when scrolling */
     .site-header.is-compact .masthead {
       height: 44px;
     }
@@ -239,8 +267,7 @@
       display: none;
     }
 
-    /* Edge-to-edge black navigation */
-
+    /* Full-width black navigation bar */
     .navigation-shell {
       width: 100%;
       background: var(--black);
@@ -276,7 +303,7 @@
     .navigation {
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 6px;
     }
 
@@ -291,6 +318,7 @@
       font-size: 13px;
       font-weight: 500;
       text-decoration: none;
+      white-space: nowrap;
       transition: background-color .18s ease;
     }
 
@@ -298,8 +326,15 @@
       background: #303030;
     }
 
-    /* Hero */
+    .nav-separator {
+      flex-shrink: 0;
+      color: var(--white);
+      font-size: 14px;
+      line-height: 1;
+      user-select: none;
+    }
 
+    /* Introduction */
     .hero {
       display: grid;
       grid-template-columns: 1.15fr .85fr;
@@ -311,8 +346,6 @@
     .hero > * {
       min-width: 0;
     }
-
-    /* Raise only the introductory text on desktop. */
 
     .hero-copy {
       transform: translateY(-12px);
@@ -415,8 +448,7 @@
       color: var(--black);
     }
 
-    /* Photo and academic details */
-
+    /* Photo and profile details */
     .hero-profile {
       width: 100%;
       max-width: 390px;
@@ -478,7 +510,6 @@
     }
 
     /* Section headings */
-
     .section {
       border-top: 1px solid var(--black);
       padding: 58px 0 66px;
@@ -512,7 +543,6 @@
     }
 
     /* Research */
-
     .research-grid {
       display: grid;
       grid-template-columns: 280px minmax(0, 1fr);
@@ -548,7 +578,6 @@
     }
 
     /* Publications */
-
     .section-heading {
       display: flex;
       align-items: flex-end;
@@ -728,7 +757,6 @@
     }
 
     /* Find me online */
-
     .online-section {
       margin: 4px 0 64px;
       padding: 42px;
@@ -797,7 +825,6 @@
     }
 
     /* Footer */
-
     .footer {
       display: flex;
       align-items: center;
@@ -829,7 +856,6 @@
     }
 
     /* Tablet */
-
     @media (max-width: 1000px) {
       .hero {
         gap: 40px;
@@ -856,7 +882,6 @@
     }
 
     /* Mobile */
-
     @media (max-width: 740px) {
       :root {
         --masthead-height: 92px;
@@ -1036,7 +1061,6 @@
     }
 
     /* Reduced motion */
-
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
@@ -1054,7 +1078,6 @@
     }
 
     /* Print */
-
     @media print {
       html {
         scroll-padding-top: 0;
@@ -1196,6 +1219,8 @@
         <nav class="navigation" aria-label="Main navigation">
           <a href="#publications">Publications</a>
 
+          <span class="nav-separator" aria-hidden="true">|</span>
+
           <a
             href="CV_Han_Git.pdf"
             download="CV_Han_Git.pdf"
@@ -1204,6 +1229,8 @@
             CV
             <span class="arrow" aria-hidden="true">↓</span>
           </a>
+
+          <span class="nav-separator" aria-hidden="true">|</span>
 
           <a href="#profiles">Find me online</a>
         </nav>
@@ -1217,18 +1244,19 @@
     <main id="main" tabindex="-1">
 
       <!-- Introduction -->
-
       <section class="hero" aria-labelledby="name">
         <div class="hero-copy">
           <p class="eyebrow">
             Anthropology × Economics
           </p>
 
-          <h1 id="name">Han Wang<span class="name-dot">.</span></h1>
+          <h1 id="name">
+            Han Wang<span class="name-dot">.</span>
+          </h1>
 
           <p class="intro">
-            I conduct research at the
-            <a href="https://www.newschool.edu/nssr/">New School for Social Research (NSSR)</a>.
+            I conduct research at
+            <a href="https://www.newschool.edu/nssr/">The New School for Social Research (NSSR)</a>.
             My work explores the transdisciplinary connections between
             economics and anthropology, with a particular interest in
             heterodox approaches to social research.
@@ -1299,7 +1327,6 @@
       </section>
 
       <!-- Research -->
-
       <section
         class="section"
         id="research"
@@ -1342,7 +1369,6 @@
       </section>
 
       <!-- Publications -->
-
       <section
         class="section"
         id="publications"
@@ -1368,7 +1394,6 @@
         <div class="publication-list">
 
           <!-- First paper -->
-
           <article class="publication">
             <div class="publication-meta">
               <time class="publication-year" datetime="2026">
@@ -1438,7 +1463,6 @@
           </article>
 
           <!-- Second paper -->
-
           <article class="publication">
             <div class="publication-meta">
               <time class="publication-year" datetime="2025">
@@ -1496,7 +1520,6 @@
       </section>
 
       <!-- Online profiles -->
-
       <section
         class="online-section"
         id="profiles"
@@ -1590,8 +1613,8 @@
         );
 
         /*
-          The spacer uses the expanded masthead height plus the
-          navigation height. It does not shrink with the header.
+          The spacer retains the expanded masthead height.
+          Only the visible header becomes compact.
         */
         root.style.setProperty(
           "--navigation-height",
@@ -1599,8 +1622,8 @@
         );
 
         /*
-          Section links use the actual visible header height,
-          keeping their headings below the fixed header.
+          Keep section headings below the fixed header
+          when clicking navigation links.
         */
         root.style.setProperty(
           "--header-height",
